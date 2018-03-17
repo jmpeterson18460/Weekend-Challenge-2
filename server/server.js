@@ -31,37 +31,40 @@ app.post('/calculate', (req, res) => {
         }
         else if (number.operator == 'subtract'){
             subNum(number.num1, number.num2);
-            history.push(number.num1 + ' ' + '-' + ' ' + number.num2 + ' ' + '=' + ' ' + returnNum);
+            number.symbol = '-';
+            number.result = returnNum;
         }
         else if (number.operator == 'multiply'){
             multNum(number.num1, number.num2);
-            history.push(number.num1 + ' ' + '*' + ' ' + number.num2 + ' ' + '=' + ' ' + returnNum);
+            number.symbol = '*';
+            number.result = returnNum;
         }
         else {
             divNum(number.num1, number.num2);
-            history.push(number.num1 + ' ' + '/' + ' ' + number.num2 + ' ' + '=' + ' ' + returnNum);
+            number.symbol = '/';
+            number.result = returnNum;
         }
     }
     res.sendStatus(200);
 })
 
 function addNum(a,b){
-    returnNum = a + b;
+    returnNum = parseInt(a) + parseInt(b);
     return returnNum;
 }
 
 function subNum(a,b){
-    returnNum = a - b;
+    returnNum = parseInt(a) - parseInt(b);
     return returnNum;
 }
 
 function multNum(a,b){
-    returnNum = a * b;
+    returnNum = parseInt(a) * parseInt(b);
     return returnNum;
 }
 
 function divNum(a,b){
-    returnNum = a / b;
+    returnNum = parseInt(a) / parseInt(b);
     return returnNum;
 }
 

@@ -41,7 +41,7 @@ function subFunc(){
 
     }).done(function(response){
         console.log('success!');
-        
+        getInfo();
 
     }).fail(function(response){
         alert("These aren't the files you're looking for...")
@@ -60,7 +60,7 @@ function multFunc(){
 
     }).done(function(response){
         console.log('success!');
-        
+        getInfo();
 
     }).fail(function(response){
         alert("These aren't the files you're looking for...")
@@ -79,6 +79,7 @@ function divFunc(){
 
     }).done(function(response){
         console.log('success!');
+        getInfo();
 
     }).fail(function(response){
         alert("These aren't the files you're looking for...")
@@ -95,9 +96,17 @@ function getInfo(){
 }
 
 function appendToDom(intake){
+    $('.win').empty();
+    $('#listHistory').empty();
     for (numbers of intake){
+        let li = $('<li></li>');
         let final = numbers.num1 + ' ' + numbers.symbol + ' ' + numbers.num2 + ' ' + '=' + ' ' + numbers.result;
-        $('#result').append(' ' + numbers.result);
-        $('.history').append(final);
+        li.append(final);
+        $('#listHistory').append(li);
     }
+    let answer = intake[intake.length-1].result;
+    $('.win').append(answer);
+
+    
+    
 }
