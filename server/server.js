@@ -48,6 +48,11 @@ app.post('/calculate', (req, res) => {
     res.sendStatus(200);
 })
 
+app.post('/delete', (req, res) => {
+    history = [];
+    res.sendStatus(200);
+})
+
 function addNum(a,b){
     returnNum = parseInt(a) + parseInt(b);
     return returnNum;

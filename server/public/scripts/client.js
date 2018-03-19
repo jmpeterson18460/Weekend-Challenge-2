@@ -6,6 +6,7 @@ function readyNow(){
     $('#subtract').on('click', subFunc);
     $('#multiply').on('click', multFunc);
     $('#divide').on('click', divFunc);
+    $('#delete').on('click', clearHistory)
     
 }
 
@@ -82,7 +83,7 @@ function divFunc(){
         getInfo();
 
     }).fail(function(response){
-        alert("These aren't the files you're looking for...")
+        alert("These aren't the files you're looking for...");
     })
 }
 
@@ -106,7 +107,22 @@ function appendToDom(intake){
     }
     let answer = intake[intake.length-1].result;
     $('.win').append(answer);
+    
+}
 
-    
-    
+function clearHistory(){
+    $.ajax({
+        type: 'POST',
+        url: '/delete'
+    }).done(function(response){
+        console.log('History cleared!');
+        $('#listHistory').empty();
+        $('.win').empty();
+        $('#num1').val('');
+        $('#num2').val('');
+
+        
+    }).fail(function(response){
+        alert("These aren't the files you're looking for...");
+    })
 }
